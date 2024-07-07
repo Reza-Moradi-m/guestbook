@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomy Guestbook</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <img id="logo" src="" alt="Logo">
+        <h1>Astronomy Guestbook</h1>
+        <p>Share your celestial experiences!</p>
+    </header>
+    <main>
+        <form id="messageForm">
+            <input type="text" id="firstName" placeholder="First Name" required>
+            <input type="text" id="lastName" placeholder="Last Name" required>
+            <textarea id="messageInput" placeholder="Write about the stars, planets, or any cosmic event" required></textarea>
+            <input type="url" id="imageInput" placeholder="Image URL (optional)">
+            <button type="submit">Submit</button>
+        </form>
+        <div id="messages"></div>
+        <img src="https://imgs.search.brave.com/5u050mb0WBYUe8R6S_AUhA-GSLLd9o3rKE9RcE5dgV0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMxLnBvY2tldGxp/bnRpbWFnZXMuY29t/L3dvcmRwcmVzcy93/cC1jb250ZW50L3Vw/bG9hZHMvMTM0MjM1/LWNhbWVyYXMtbmV3/cy1mZWF0dXJlLTIx/LW9mLXRoZS1iZXN0/LWFzdHJvbm9teS1w/aG90b2dyYXBocy10/aGF0LWFyZS1vdXQt/b2YtdGhpcy13b3Js/ZC1pbWFnZTEwLTF5/dzJlZ2p1dWkuanBn" alt="Starry Sky">
+    </main>
+    <script src="guestbook.js" type="module"></script>
+</body>
+</html>
