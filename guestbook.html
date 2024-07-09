@@ -10,7 +10,7 @@
     <header>
         <img id="logo" src="https://imgs.search.brave.com/tVll3lOqU7ak1POoRkk40SCPwvktzKwINBbgZOhnH8k/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzg0Lzk3LzA3/LzM2MF9GXzI4NDk3/MDcxNF9BMFhhY1Bv/OWVjOU9xeEFMeWJM/ZDdtSEpneDlhZTZU/ZS5qcGc" alt="Logo">
         <h1>Astronomy Guestbook</h1>
-        <p>Share your celestial experiences!</p>
+        <h5>Share your celestial experiences!</h5>
     </header>
     <main>
         <form id="messageForm">
@@ -23,6 +23,20 @@
         <div id="messages"></div>
         <img src="https://imgs.search.brave.com/5u050mb0WBYUe8R6S_AUhA-GSLLd9o3rKE9RcE5dgV0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMxLnBvY2tldGxp/bnRpbWFnZXMuY29t/L3dvcmRwcmVzcy93/cC1jb250ZW50L3Vw/bG9hZHMvMTM0MjM1/LWNhbWVyYXMtbmV3/cy1mZWF0dXJlLTIx/LW9mLXRoZS1iZXN0/LWFzdHJvbm9teS1w/aG90b2dyYXBocy10/aGF0LWFyZS1vdXQt/b2YtdGhpcy13b3Js/ZC1pbWFnZTEwLTF5/dzJlZ2p1dWkuanBn" alt="Starry Sky">
     </main>
-    <script src="guestbook.js" type="module"></script>
+    <script>
+        // Check if the browser supports modules
+        if ('noModule' in HTMLScriptElement.prototype) {
+            // Load the module script
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.src = 'guestbook.js';
+            document.body.appendChild(script);
+        } else {
+            // Load the non-module script
+            const script = document.createElement('script');
+            script.src = 'guestbook-nomodule.js';
+            document.body.appendChild(script);
+        }
+    </script>
 </body>
 </html>
