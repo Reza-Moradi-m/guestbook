@@ -1,5 +1,3 @@
-/* guestbook.css */
-
 /* Global styles */
 body {
     font-family: Arial, sans-serif;
@@ -61,4 +59,30 @@ button:hover {
     margin-bottom: 10px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for the index page */
+#guestbookLink {
+    display: block;
+    text-align: center;
+    font-size: 1.5em;
+    color: #fff;
+    background-color: #007bff;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+#guestbookLink:hover {
+    background-color: #0056b3;
+}
+
+/* Centering the link above the image */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
