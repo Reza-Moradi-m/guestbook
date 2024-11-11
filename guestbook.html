@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astronomy Guestbook</title>
     <meta name="description" content="Welcome to the Astronomy Guestbook! Share your celestial experiences and connect with fellow stargazers.">
-    <meta name="keywords" content="Astronomy, Guestbook, Stargazing, Celestial, Stars, Planets, Cosmic Events">
-    <meta name="author" content="Your Name">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -24,22 +22,27 @@
             <button type="submit">Submit</button>
         </form>
         <div id="messages"></div>
-        <img src="https://imgs.search.brave.com/5u050mb0WBYUe8R6S_AUhA-GSLLd9o3rKE9RcE5dgV0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMxLnBvY2tldGxp/bnRpbWFnZXMuY29t/L3dvcmRwcmVzcy93/cC1jb250ZW50L3Vw/bG9hZHMvMTM0MjM1/LWNhbWVyYXMtbmV3/cy1mZWF0dXJlLTIx/LW9mLXRoZS1iZXN0/LWFzdHJvbm9teS1w/aG90b2dyYXBocy10/aGF0LWFyZS1vdXQt/b2YtdGhpcy13b3Js/ZC1pbWFnZTEwLTF5/dzJlZ2p1dWkuanBn" alt="Starry Sky">
     </main>
     <script>
-        // Check if the browser supports modules
-        if ('noModule' in HTMLScriptElement.prototype) {
-            // Load the module script
-            const script = document.createElement('script');
-            script.type = 'module';
-            script.src = 'guestbook.js';
-            document.body.appendChild(script);
-        } else {
-            // Load the non-module script
-            const script = document.createElement('script');
-            script.src = 'guestbook-nomodule.js';
-            document.body.appendChild(script);
-        }
+        document.getElementById("messageForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const firstName = document.getElementById("firstName").value;
+            const lastName = document.getElementById("lastName").value;
+            const message = document.getElementById("messageInput").value;
+            const imageUrl = document.getElementById("imageInput").value;
+
+            // Save data to localStorage
+            const entry = { firstName, lastName, message, imageUrl, timestamp: new Date().toISOString() };
+            localStorage.setItem("latestGuestbookEntry", JSON.stringify(entry));
+
+            // Clear the form
+            document.getElementById("messageForm").reset();
+
+            // Optionally display a success message
+            alert("Your entry has been saved! It will be visible on the main page.");
+        });
     </script>
 </body>
 </html>
+
