@@ -8,15 +8,14 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
     <header>
         <img id="logo" src="https://imgs.search.brave.com/tVll3lOqU7ak1POoRkk40SCPwvktzKwINBbgZOhnH8k/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzg0Lzk3LzA3/LzM2MF9GXzI4NDk3/MDcxNF9BMFhhY1Bv/OWVjOU9xeEFMeWJM/ZDdtSEpneDlhZTZU/ZS5qcGc" alt="Logo">
         <h1>Astronomy Guestbook</h1>
         <h5>Share your celestial experiences!</h5>
         <!-- Button to go back to the main page -->
-    <div class="button-container">
-        <a href="index.html" class="button">Back to Main Page</a>
-    </div>
+        <div class="button-container">
+            <a href="index.html" class="button">Back to Main Page</a>
+        </div>
     </header>
     <main>
         <form id="messageForm">
@@ -37,9 +36,17 @@
             const message = document.getElementById("messageInput").value;
             const imageUrl = document.getElementById("imageInput").value;
 
-            // Save data to localStorage
+            // Retrieve existing entries from localStorage, or initialize as an empty array
+            const entries = JSON.parse(localStorage.getItem("guestbookEntries")) || [];
+            
+            // Create a new entry object
             const entry = { firstName, lastName, message, imageUrl, timestamp: new Date().toISOString() };
-            localStorage.setItem("latestGuestbookEntry", JSON.stringify(entry));
+            
+            // Add the new entry to the entries array
+            entries.push(entry);
+
+            // Save the updated entries array to localStorage
+            localStorage.setItem("guestbookEntries", JSON.stringify(entries));
 
             // Clear the form
             document.getElementById("messageForm").reset();
@@ -50,4 +57,5 @@
     </script>
 </body>
 </html>
+
 
