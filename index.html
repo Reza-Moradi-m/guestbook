@@ -30,20 +30,54 @@
         </section>
     </main>
     <script>
-        // Load the latest guestbook entry from localStorage
-        const entryPreview = document.getElementById("entry-preview");
-        const latestEntry = JSON.parse(localStorage.getItem("latestGuestbookEntry"));
+        // Function to load all guestbook entries from localStorage
+        function loadEntries() {
+            const entryPreview = document.getElementById("entry-preview");
+            entryPreview.innerHTML = ''; // Clear existing content
 
-        if (latestEntry) {
-            entryPreview.innerHTML = `
-                <p><strong>Name:</strong> ${latestEntry.firstName} ${latestEntry.lastName}</p>
-                <p><strong>Message:</strong> ${latestEntry.message}</p>
-                ${latestEntry.imageUrl ? `<img src="${latestEntry.imageUrl}" alt="Uploaded Image" />` : ''}
-                <p><small>Posted on: ${new Date(latestEntry.timestamp).toLocaleString()}</small></p>
-            `;
-        } else {
-            entryPreview.innerHTML = "<p>No recent entries.</p>";
+            // Retrieve all entries from localStorage
+            const entries = JSON.parse(localStorage.getItem("guestbookEntries")) || [];
+
+            if (entries.length === 0) {
+                entryPreview.innerHTML = "<p>No recent entries.</p>";
+                return;
+            }
+
+            entries.forEach((entry, index) => {
+                const entryElement = document.createElement("div");
+                entryElement.classList.add("entry");
+
+                entryElement.innerHTML = `
+                    <p><strong>Name:</strong> ${entry.firstName} ${entry.lastName}</p>
+                    <p><strong>Message:</strong> ${entry.message}</p>
+                    ${entry.imageUrl ? `<img src="${entry.imageUrl}" alt="Uploaded Image" />` : ''}
+                    <p><small>Posted on: ${new Date(entry.timestamp).toLocaleString()}</small></p>
+                    <button onclick="removeEntry(${index})" class="remove-button">Remove</button>
+                `;
+
+                entryPreview.appendChild(entryElement);
+            });
         }
+
+        // Function to remove a specific entry
+        function removeEntry(index) {
+            let entries = JSON.parse(localStorage.getItem("guestbookEntries")) || [];
+            entries.splice(index, 1); // Remove the entry at the specified index
+            localStorage.setItem("guestbookEntries", JSON.stringify(entries)); // Update localStorage
+            loadEntries(); // Refresh the displayed entries
+        }
+
+        // Function to clear all entries
+        function clearAllEntries() {
+            localStorage.removeItem("guestbookEntries"); // Remove all entries from localStorage
+            loadEntries(); // Refresh the displayed entries
+        }
+
+        // Load entries on page load
+        document.addEventListener("DOMContentLoaded", loadEntries);
+
+        // Event listener for the "Clear All" button
+        document.getElementById("clearAllButton").addEventListener("click", clearAllEntries);
     </script>
 </body>
 </html>
