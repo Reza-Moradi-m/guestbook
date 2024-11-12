@@ -26,8 +26,7 @@
             <h2>Latest Guestbook Entries</h2>
             <button id="clearAllButton" class="button">Clear All Entries</button>
             <div id="entry-preview">
-                <!-- Content will be dynamically inserted here. -->
-
+                <!-- Content will be dynamically inserted here -->
             </div>
         </section>
     </main>
@@ -47,7 +46,7 @@
 
             entries.forEach((entry, index) => {
                 const entryElement = document.createElement("div");
-                entryElement.classList.add("entry");
+                entryElement.classList.add("entry", "message-card");
 
                 entryElement.innerHTML = `
                     <p><strong>Name:</strong> ${entry.firstName} ${entry.lastName}</p>
